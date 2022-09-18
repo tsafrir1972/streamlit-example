@@ -127,8 +127,8 @@ class TravelOptions:
             
             uri = 'mongodb+srv://tsafrir:tsafrir@cluster0.frf1eeg.mongodb.net/?retryWrites=true&w=majority'
             client = pymongo.MongoClient(uri)
-            result = client["travel_app"]["Flights"].find()
-            x = mycol.delete_many({})
+            mydb = myclient["travel_app"]
+            mycol = mydb["Flights"]
             
             
             
