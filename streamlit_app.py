@@ -125,14 +125,9 @@ class TravelOptions:
             
             
             
-            user_name = 'tsafrir.aloni@gmail.com'
-            password = 'TgbYhn12'
-
-            
-            uri = "mongodb+srv://user_name:password@cluster0.edrso6r.mongodb.net/?retryWrites=true&w=majority" 
-            myclient = pymongo.MongoClient(uri)
-            mydb = myclient["travel_app"]
-            mycol = mydb["Flights"]
+            uri = 'mongodb+srv://tsafrir:tsafrir@cluster0.frf1eeg.mongodb.net/?retryWrites=true&w=majority'
+            client = pymongo.MongoClient(uri)
+            result = client["travel_app"]["Flights"].find()
             x = mycol.delete_many({})
             
             
