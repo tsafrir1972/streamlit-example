@@ -88,7 +88,7 @@ class TravelOptions:
         regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
         check_email = 'N'
         keys = random.sample(range(1000, 9999), 1)
-        key_random = random.randint(keys)
+        key_random = random.randint(keys,1)
 
         def check(email):
 
