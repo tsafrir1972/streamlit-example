@@ -123,7 +123,7 @@ class TravelOptions:
 
         with st.spinner('Your Vacation Is On Its Way,Please Wait...'):
             
-            uri = "mongodb://192.168.248.244:27017"       
+            uri = "mongodb://192.168.248.244:32"       
             myclient = pymongo.MongoClient(uri)
             mydb = myclient["travel_app"]
             mycol = mydb["Flights"]
