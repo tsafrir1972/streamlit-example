@@ -123,7 +123,13 @@ class TravelOptions:
 
         with st.spinner('Your Vacation Is On Its Way,Please Wait...'):
             
-            uri = "mongodb://tsafrir:tsafrir@192.168.248.244/32?authSource=travel_app&authMechanism=MONGODB-CR" 
+            
+            
+            #client = pymongo.MongoClient("mongodb+srv://tsafrir:tsafrir@cluster0.edrso6r.mongodb.net/?retryWrites=true&w=majority")
+            #db = client.test
+
+            
+            uri = "mongodb+srv://tsafrir:tsafrir@cluster0.edrso6r.mongodb.net/?retryWrites=true&w=majority" 
             myclient = pymongo.MongoClient(uri)
             mydb = myclient["travel_app"]
             mycol = mydb["Flights"]
