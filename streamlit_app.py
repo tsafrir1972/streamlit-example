@@ -135,8 +135,8 @@ class TravelOptions:
             
             
             app_flights = Flights().find_flight(selected_city)
-            #app_hotels = Hotels().find_hotels(selected_city)
-            #app_restorants = Restorants().find_restorants(selected_city)
+            app_hotels = Hotels().find_hotels(selected_city)
+            app_restorants = Restorants().find_restorants(selected_city)
             time.sleep(5)
         st.success('Done! Please Check Your Email For Your Vacation Recommendations for ' +  selected_city + '(Your Flights Are Listed Below) ')
         st.balloons()
