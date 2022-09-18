@@ -123,27 +123,10 @@ class TravelOptions:
 
         with st.spinner('Your Vacation Is On Its Way,Please Wait...'):
             
-                   
-            @st.experimental_singleton
-            def init_connection():
-                return pymongo.MongoClient(**st.secrets["mongo"])
-
-            client = init_connection()
-
-            # Pull data from the collection.
-            # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-            @st.experimental_memo(ttl=600)
-            def get_data():
-                db = client.mydb
-                items = db.mycollection.find()
-                items = list(items)  # make hashable for st.experimental_memo
-                return items
-
-            items = get_data()
-
-            # Print results.
-            for item in items:
-                st.write(f"{item['name']} has a :{item['pet']}:")
+            uri = "mongodb://192.168.248.244:27017"       
+            myclient = pymongo.MongoClient(uri)
+            mydb = myclient["travel_app"]
+            mycol = mydb["Flights"]
             
             
             
