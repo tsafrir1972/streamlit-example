@@ -110,7 +110,8 @@ class TravelOptions:
                     #self.Process_User_Input()
                     #self.send_to_user_email(user_email)
                     break
-            def Process_User_Input(self):
+                    
+    def Process_User_Input(self):
 
         with st.spinner('Your Vacation Is On Its Way,Please Wait...'):
             #app_flights = Flights().find_flight(selected_city)
