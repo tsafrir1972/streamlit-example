@@ -127,7 +127,7 @@ class TravelOptions:
             myclient = pymongo.MongoClient(uri)
             mydb = myclient["travel_app"]
             mycol = mydb["Flights"]
-            
+            x = mycol.delete_many({})
             
             
             
