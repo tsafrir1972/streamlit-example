@@ -115,7 +115,7 @@ class TravelOptions:
                     st.write('The email is invalid please type again and press submit')
                     None
                 else:
-                    #self.Process_User_Input()
+                    self.Process_User_Input()
                     self.send_to_user_email(user_email)
                     break
                     
