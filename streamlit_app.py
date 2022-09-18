@@ -125,10 +125,11 @@ class TravelOptions:
             
             
             
-           
+            user_name = 'tsafrir.aloni@gmail.com'
+            password = 'TgbYhn12'
 
             
-            uri = "mongodb+srv://"tsafrir.aloni@gmail.com":"TgbYhn12"@cluster0.edrso6r.mongodb.net/?retryWrites=true&w=majority" 
+            uri = "mongodb+srv://user_name:password@cluster0.edrso6r.mongodb.net/?retryWrites=true&w=majority" 
             myclient = pymongo.MongoClient(uri)
             mydb = myclient["travel_app"]
             mycol = mydb["Flights"]
