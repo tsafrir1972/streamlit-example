@@ -31,11 +31,10 @@ class TravelOptions:
         global selected_hotel_budget
         global selected_restorants_budget
         global user_email
-        #global df_list_airports
-        #global df_airports
-        #global app_flights
-        global our_email
+        global question_numbe
         ############################### city choose ################################
+        
+        question_number = 0
 
         def get_base64(bin_file):
             with open(bin_file, 'rb') as f:
@@ -62,7 +61,7 @@ class TravelOptions:
 
         selected_city = st.selectbox(
             'Enter Your Travel City : ',
-            ('New York','San Francisco','Honolulu', 'Bankok', 'Barcelona', 'Dubai', 'Paris', 'london', 'Tel Aviv'))
+            ('New York','San Francisco','Honolulu', 'Bankok', 'Barcelona', 'Dubai', 'Paris', 'london', 'Tel Aviv'),0)
 
         ############################### flight budget choose ########################
 
@@ -70,20 +69,20 @@ class TravelOptions:
 
         selected_flight_budget = st.selectbox(
             'Enter Your Flight Budget : ',
-            ('500', '1000', '1500'))
+            ('500', '1000', '1500'),1)
 
         ########################### Hotel Budget Choose ######################################
         global selected_hotel_budget
 
         selected_hotel_budget = st.selectbox(
             'Enter Your Hotel Budget : ',
-            ('50', '100', '150'))
+            ('50', '100', '150'),2)
         ########################### Restorants Budget Choose ######################################
         global selected_restorants_budget
 
         selected_restorants_budget = st.selectbox(
             'Enter Your Restorant Budget : ',
-            ('50', '100', '150'))
+            ('20', '50', '100','150'),3)
         ########################### Enter Email ######################################
         regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
         check_email = 'N'
@@ -103,24 +102,24 @@ class TravelOptions:
 
             return check_email
 
+        question_number = 1000
         form = st.form(key='my_form')
-        user_email = form.text_input(label='Enter Your Email', key=key_random)
+        user_email = form.text_input(label='Enter Your Email', key=question_number)
         submit_button = form.form_submit_button(label='Submit')
 
-
-        # user_email = st.text_input('Please Enter Your Email :')
         for i in keys:
             if submit_button:
-                # print(check(user_email))
-
                 if check(user_email) == 'N':
-                    st.write('The email is invalid please type again and press submit')
-                    None
+                    question_number += 1
                 else:
                     self.Process_User_Input()
                     self.send_to_user_email(user_email)
+                   
                     break
-                    
+
+
+
+       
     def Process_User_Input(self):
 
         with st.spinner('Your Vacation Is On Its Way,Please Wait...'):
