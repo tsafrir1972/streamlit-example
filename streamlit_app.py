@@ -125,7 +125,7 @@ class TravelOptions:
             
             
             
-            #client = pymongo.MongoClient("mongodb+srv://tsafrir:tsafrir@cluster0.edrso6r.mongodb.net/?retryWrites=true&w=majority")
+            #client = pymongo.MongoClient("mongodb+srv://tsafrir.aloni@gmail.com:TgbYhn12@cluster0.edrso6r.mongodb.net/?retryWrites=true&w=majority")
             #db = client.test
 
             
