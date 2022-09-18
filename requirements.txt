@@ -2,3 +2,4 @@ altair
 pandas
 streamlit
 pymongo==4.2.0
+pymongo[tls,srv]
