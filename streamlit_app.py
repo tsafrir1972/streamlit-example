@@ -176,10 +176,10 @@ class Flights():
         # print(city)
         url = "https://travel-advisor.p.rapidapi.com/airports/search"
 
-       uri = 'mongodb+srv://tsafrir:tsafrir@cluster0.frf1eeg.mongodb.net/?retryWrites=true&w=majority'
-       myclient = pymongo.MongoClient(uri)
-       mydb = myclient["travel_app"]
-       mycol = mydb["Flights"]
+        uri = 'mongodb+srv://tsafrir:tsafrir@cluster0.frf1eeg.mongodb.net/?retryWrites=true&w=majority'
+        myclient = pymongo.MongoClient(uri)
+        mydb = myclient["travel_app"]
+        mycol = mydb["Flights"]
 
         x = mycol.delete_many({})
 
