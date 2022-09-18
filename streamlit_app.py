@@ -165,6 +165,104 @@ class TravelOptions:
 
         #print('Application process finished !')            
 
+class Flights():
+
+    def find_flight(self, city):
+
+        global df_list_airports
+        global df_airports
+        global df_airports_string
+
+        # print(city)
+        url = "https://travel-advisor.p.rapidapi.com/airports/search"
+
+       uri = 'mongodb+srv://tsafrir:tsafrir@cluster0.frf1eeg.mongodb.net/?retryWrites=true&w=majority'
+       myclient = pymongo.MongoClient(uri)
+       mydb = myclient["travel_app"]
+       mycol = mydb["Flights"]
+
+        x = mycol.delete_many({})
+
+        #client = pymongo.MongoClient("mongodb://localhost:27017/")
+
+        querystring = {"query": city, "locale": "en_US"}
+
+        headers = {
+            'X-RapidAPI-Key': 'aedd40ee0emsh7abd403f44557b7p1236b2jsn91e7e9c7abf6',
+            "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com"
+        }
+
+        response = requests.request("GET", url, headers=headers, params=querystring)
+
+        list_json = json.loads(response.text)
+        list_length = len(list_json)
+
+        for i in range(0, list_length):
+            # print(list_json[i])
+            var_price = random.randint(900, 1000)
+            var_flight_number = random.randint(10000, 15000)
+            list_json[i]['flight_number'] = 'NY' + str(var_flight_number)
+            list_json[i]['price_in_dollars'] = var_price
+            mycol.insert_one(list_json[i])
+
+        data = pd.DataFrame(list(mycol.find()))
+
+        data_length = data.shape[0]
+
+        data['Price'] = np.random.randint(900, 1000, data.shape[0])
+
+        updated = data['longitude']
+
+        data = data.applymap(str)
+
+        df_airports = data.loc[:, ["name", "flight_number", "price_in_dollars"]]
+
+        df_airports = df_airports.loc[
+            df_airports["price_in_dollars"].apply(pd.to_numeric) <= int(selected_flight_budget)]
+
+        df_list_airports = df_airports.values.tolist()
+
+        df_airports.sort_values(by=['price_in_dollars'], ascending=False).head(3)
+
+        df_airports = df_airports.head(3)
+
+        df_airports_string = df_airports.to_string()
+
+        def cell_colours(series):
+            red = 'background-color: red;'
+            yellow = 'background-color: yellow;'
+            turquoise = 'background-color: turquoise;'
+            default = ''
+
+            return [red if data == "failed" else yellow if data == "error" else green if data == "passed"
+            else turquoise for data in series]
+
+        headers = {
+            'selector': 'th.col_heading',
+            'props': 'background-color: #000066; color: white;'
+        }
+        df_airports = df_airports.style.set_table_styles([headers]) \
+            .apply(cell_colours)
+
+
+        #styles = [dict(selector="caption", props=[("font-size", "100%"),
+        #                                          ("font-weight", "bold")])]
+
+        #df_airports.style.set_caption('Flights').set_table_styles(styles)
+
+        #df_airports = df_airports.style.set_properties(**{
+        #    'background-color': 'turquoise',
+        #    'font-size': '15pt',
+        #})
+
+
+
+
+        st.table(df_airports)
+        #print(df_list_airports)
+        return df_list_airports        
+        
+        
 if __name__ == '__main__':
 
     TravelOptions()
