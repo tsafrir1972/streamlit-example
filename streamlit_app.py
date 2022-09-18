@@ -110,6 +110,40 @@ class TravelOptions:
                     #self.Process_User_Input()
                     #self.send_to_user_email(user_email)
                     break
+            def Process_User_Input(self):
+
+        with st.spinner('Your Vacation Is On Its Way,Please Wait...'):
+            #app_flights = Flights().find_flight(selected_city)
+            #app_hotels = Hotels().find_hotels(selected_city)
+            #app_restorants = Restorants().find_restorants(selected_city)
+            time.sleep(5)
+        st.success('Done! Please Check Your Email For Your Vacation Recommendations for ' +  selected_city + '(Your Flights Are Listed Below) ')
+        st.balloons()
+
+    def send_to_user_email(self, user_email):
+
+            email_sender = 'travel.app.flyer@gmail.com'
+            email_password = 'efotfjtutkrsxzby'
+            email_receiver = user_email
+
+            subject = 'Check out your travel recommendations for ' + selected_city
+            flights_list = ' '.join(map(str,df_list_airports))
+            body = "Test"
+            #body = "Your Recommended Flights - " + flights_list + "\n" + "Your Recommended Hotels  - " + flights_list + "\n" + "Your Recommended Restorants - " + flights_list
+            #body = "Your Recommended Travel Information Are - \n\n\n" + "\n\n FLIGHTS \n\n " + df_airports_string + "\n\n HOTELS \n\n " + df_hotels_string + "\n\n RESTORANTS \n\n " + df_restorants_string
+            em = EmailMessage()
+            em['From'] = email_sender
+            em['To'] = email_receiver
+            em['Subject'] = subject
+            em.set_content(body)
+
+            context = ssl.create_default_context()
+
+            with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+                smtp.login(email_sender, email_password)
+                smtp.sendmail(email_sender, email_receiver, em.as_string())
+
+        #print('Application process finished !')            
 
 if __name__ == '__main__':
 
