@@ -133,7 +133,7 @@ class TravelOptions:
             
             
             
-            #app_flights = Flights().find_flight(selected_city)
+            app_flights = Flights().find_flight(selected_city)
             #app_hotels = Hotels().find_hotels(selected_city)
             #app_restorants = Restorants().find_restorants(selected_city)
             time.sleep(5)
