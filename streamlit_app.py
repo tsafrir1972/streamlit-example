@@ -128,7 +128,7 @@ class TravelOptions:
             email_receiver = user_email
 
             subject = 'Check out your travel recommendations for ' + selected_city
-            flights_list = ' '.join(map(str,df_list_airports))
+            #flights_list = ' '.join(map(str,df_list_airports))
             body = "Test"
             #body = "Your Recommended Flights - " + flights_list + "\n" + "Your Recommended Hotels  - " + flights_list + "\n" + "Your Recommended Restorants - " + flights_list
             #body = "Your Recommended Travel Information Are - \n\n\n" + "\n\n FLIGHTS \n\n " + df_airports_string + "\n\n HOTELS \n\n " + df_hotels_string + "\n\n RESTORANTS \n\n " + df_restorants_string
