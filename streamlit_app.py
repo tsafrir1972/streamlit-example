@@ -88,6 +88,7 @@ class TravelOptions:
         regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
         check_email = 'N'
         keys = random.sample(range(1000, 9999), 1)
+        key_random = random.randint(keys)
 
         def check(email):
 
@@ -103,7 +104,7 @@ class TravelOptions:
             return check_email
 
         form = st.form(key='my_form')
-        user_email = form.text_input(label='Enter Your Email', key=1)
+        user_email = form.text_input(label='Enter Your Email', key=key_random)
         submit_button = form.form_submit_button(label='Submit')
 
 
